@@ -5,7 +5,7 @@ import { useHistoryState } from "@/contexts/historyContext";
 export default function Header() {
     const router = useRouter();
 
-    const { citiesHistory, setCitiesHistory }: any = useHistoryState();
+    const { citiesHistory }: any = useHistoryState();
 
     const [cityId, setCityId] = useState("");
 
@@ -14,6 +14,7 @@ export default function Header() {
             alert("City ID can't be empty!");
             return;
         }
+        setCityId('')
         router.push(`/city/${cityId}`);
     };
 
@@ -36,6 +37,7 @@ export default function Header() {
                     type="text"
                     placeholder="Search By City ID"
                     className="input input-bordered w-full max-w-xs bg-purple-950"
+                    value={cityId}
                     onChange={(e) => {
                         setCityId(e.target.value);
                     }}
