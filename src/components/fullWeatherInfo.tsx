@@ -1,26 +1,34 @@
 import { useEffect, useState } from "react";
 
 export default function FullWeatherInfo({ info }: any) {
-    const [sunrise, setSunrise] = useState<Date | null>(null);
-    const [sunset, setSunset] = useState<Date | null>(null);
+    const [sunrise, setSunrise] = useState<string | null>(null);
+    const [sunset, setSunset] = useState<string | null>(null);
 
-    const [year, setYear] = useState<number | null>(null)
-    const [month, setMonth] = useState<number | null>(null)
-    const [day, setDay] = useState<number | null>(null)
-    const [hours, setHours] = useState<number | null>(null)
-    const [minutes, setMinutes] = useState<number | null>(null)
-    const [seconds, setSeconds] = useState<number | null>(null)
+    const [year, setYear] = useState<string | null>(null)
+    const [month, setMonth] = useState<string | null>(null)
+    const [day, setDay] = useState<string | null>(null)
+    const [hours, setHours] = useState<string | null>(null)
+    const [minutes, setMinutes] = useState<string | null>(null)
+    const [seconds, setSeconds] = useState<string | null>(null)
 
     useEffect(() => {
-        setSunrise(new Date(info.sys.sunrise * 1000 + info.timezone));
-        setSunset(new Date(info.sys.sunset * 1000 + info.timezone));
+        const sunriseDate = new Date(info.sys.sunrise * 1000 + info.timezone)
+        const sunriseFormattedHr = sunriseDate.getHours().toString().padStart(2, '0')
+        const sunriseFormattedMin = sunriseDate.getMinutes().toString().padStart(2, '0')
+        const sunriseFormattedSec = sunriseDate.getSeconds().toString().padStart(2, '0')
+        setSunrise(`${sunriseFormattedHr} : ${sunriseFormattedMin} : ${sunriseFormattedSec}`);
+        const sunsetDate = new Date(info.sys.sunset * 1000 + info.timezone)
+        const sunsetFormattedHr = sunsetDate.getHours().toString().padStart(2, '0')
+        const sunsetFormattedMin = sunsetDate.getMinutes().toString().padStart(2, '0')
+        const sunsetFormattedSec = sunsetDate.getSeconds().toString().padStart(2, '0')
+        setSunset(`${sunsetFormattedHr} : ${sunsetFormattedMin} : ${sunsetFormattedSec}`);
 
         setYear(info.lastUpdated.getFullYear())
-        setMonth(info.lastUpdated.getMonth() + 1)
-        setDay(info.lastUpdated.getDate())
-        setHours(info.lastUpdated.getHours())
-        setMinutes(info.lastUpdated.getMinutes())
-        setSeconds(info.lastUpdated.getSeconds())
+        setMonth((info.lastUpdated.getMonth() + 1).toString().padStart(2, '0'))
+        setDay(info.lastUpdated.getDate().toString().padStart(2, '0'))
+        setHours(info.lastUpdated.getHours().toString().padStart(2, '0'))
+        setMinutes(info.lastUpdated.getMinutes().toString().padStart(2, '0'))
+        setSeconds(info.lastUpdated.getSeconds().toString().padStart(2, '0'))
     }, []);
 
     return (
@@ -127,13 +135,11 @@ export default function FullWeatherInfo({ info }: any) {
                                 <span>
                                     SunRise:{" "}
                                     <div className="inline rounded-full bg-orange-700 p-1.5">
-                                        {sunrise?.getHours()}:{" "}
-                                        {sunrise?.getMinutes()}
+                                        {sunrise}
                                     </div>{" "}
                                     &nbsp; SunSet:{" "}
                                     <div className="inline rounded-full bg-violet-700 p-1.5">
-                                        {sunset?.getHours()}:{" "}
-                                        {sunset?.getMinutes()}
+                                        {sunset}
                                     </div>{" "}
                                     &nbsp;
                                 </span>
