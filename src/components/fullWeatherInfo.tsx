@@ -53,7 +53,7 @@ export default function FullWeatherInfo({ info }: any) {
                             <div className="flex items-center w-full gap-1 ms-2">
                                 <img
                                     className="weatherInfoIcon"
-                                    src="svgs/coordinates.svg"
+                                    src="/svgs/coordinates.svg"
                                     alt=""
                                 />
                                 <span className=" italic">
@@ -64,7 +64,7 @@ export default function FullWeatherInfo({ info }: any) {
                             <div className="flex items-center w-full gap-1 ms-2">
                                 <img
                                     className="weatherInfoIcon"
-                                    src="svgs/temperature.svg"
+                                    src="/svgs/temperature.svg"
                                     alt=""
                                 />
                                 <span>
@@ -86,7 +86,7 @@ export default function FullWeatherInfo({ info }: any) {
                             <div className="flex items-center w-full gap-1 ms-2">
                                 <img
                                     className="weatherInfoIcon"
-                                    src="svgs/humidity.svg"
+                                    src="/svgs/humidity.svg"
                                     alt=""
                                 />
                                 <span>
@@ -100,7 +100,7 @@ export default function FullWeatherInfo({ info }: any) {
                             <div className="flex items-center w-full gap-1 ms-2">
                                 <img
                                     className="weatherInfoIcon"
-                                    src="svgs/pressure.svg"
+                                    src="/svgs/pressure.svg"
                                     alt=""
                                 />
                                 <span>
@@ -114,7 +114,7 @@ export default function FullWeatherInfo({ info }: any) {
                             <div className="flex items-center w-full gap-1 ms-2">
                                 <img
                                     className="weatherInfoIcon"
-                                    src="svgs/wind.svg"
+                                    src="/svgs/wind.svg"
                                     alt=""
                                 />
                                 <span>
@@ -129,7 +129,7 @@ export default function FullWeatherInfo({ info }: any) {
                             <div className="flex items-center w-full gap-1 ms-2">
                                 <img
                                     className="weatherInfoIcon"
-                                    src="svgs/sun.svg"
+                                    src="/svgs/sun.svg"
                                     alt=""
                                 />
                                 <span>

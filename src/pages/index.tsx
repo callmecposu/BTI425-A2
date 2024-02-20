@@ -1,11 +1,12 @@
-import Header from "@/components/header";
 import FullWeatherInfo from "@/components/fullWeatherInfo";
 import { useEffect, useState } from "react";
 import getCurrentLocInfo from "@/utils/getCurrentLocInfo";
 import WeatherSearch from "@/components/weatherSearch";
-import getFlag from "@/utils/getFlag";
+import { useRouter } from "next/router";
 
 export default function Home() {
+    const router = useRouter();
+
     const [curLocInfo, setCurLocInfo] = useState<any>(null);
     const [curLocErr, setCurLocErr] = useState<string | null>(null);
 
@@ -18,7 +19,6 @@ export default function Home() {
 
     return (
         <div>
-            <Header></Header>
             {curLocInfo ? (
                 <FullWeatherInfo info={curLocInfo}></FullWeatherInfo>
             ) : (
@@ -30,6 +30,7 @@ export default function Home() {
                 setSearchResults={setSearchResults}
                 setCurPage={setCurPage}
             ></WeatherSearch>
+            {/* Search Results Table */}
             {searchResults.length > 0 && (
                 <div className="w-full md:w-3/4 mx-auto my-4 border-2">
                     <table className="table">
@@ -43,7 +44,10 @@ export default function Home() {
                         <tbody>
                             {(searchResults[curPage as number] as any).map(
                                 (res: any) => (
-                                    <tr className=" transition-all hover:bg-gray-100 hover:cursor-pointer">
+                                    <tr
+                                        className=" transition-all hover:bg-gray-100 hover:cursor-pointer"
+                                        onClick={() => {router.push(`/city/${res.id}`)}}
+                                    >
                                         <td>
                                             {res.name}, {res.sys.country}{" "}
                                             {res.flag}

@@ -27,22 +27,6 @@ export default function WeatherSearch({ setSearchResults, setCurPage }: any) {
 
         setCurPage(0);
         setSearchResults(_.chunk(sRes.res.list, 3));
-        // const resp = await fetch(
-        //     `https://api.openweathermap.org/data/2.5/find?appid=${
-        //         process.env.NEXT_PUBLIC_API_KEY
-        //     }&units=metric&cnt=50&q=${encodeURIComponent(query)}`
-        // );
-        // let res = await resp.json()
-        // console.log(res)
-        // if (resp.status != 200){
-        //     setQErr(res.message)
-        //     return
-        // }
-        // for(let i = 0; i < res.count; i++){
-        //     res.list[i].flag = await getFlag(res.list[i].sys.country)
-        // }
-        // setCurPage(0)
-        // setSearchResults(_.chunk(res.list, 3))
     };
 
     return (
@@ -54,7 +38,7 @@ export default function WeatherSearch({ setSearchResults, setCurPage }: any) {
                 <div className="w-full flex items-center justify-center">
                     <input
                         type="text"
-                        placeholder="Type here"
+                        placeholder="CityName, CountryCode"
                         className="input input-bordered w-full max-w-xs"
                         onChange={(e) => {
                             setQuery(e.target.value);
