@@ -6,4 +6,8 @@
     @apply w-8 h-8
 }
 
+.dropdown-content{
+    @apply  bg-purple-900 rounded-xl w-60 max-h-60 overflow-auto scrollbar scrollbar-track-rounded-full scrollbar-thumb-rounded-full scrollbar-thumb-purple-600 scrollbar-w-3
+}
+
 

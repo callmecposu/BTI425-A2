@@ -18,7 +18,7 @@ const config: Config = {
             sans: ["Ubuntu"],
         },
     },
-    plugins: [require("daisyui")],
+    plugins: [require("daisyui"), require('tailwind-scrollbar')({nocompatible: true})],
     daisyui: {
         themes: ["fantasy"],
     },

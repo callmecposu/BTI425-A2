@@ -2,10 +2,13 @@ import getFlag from "@/utils/getFlag";
 import { useState } from "react";
 import _ from "lodash";
 import searchByQuery from "@/utils/searchByQuery";
+import { useSearchResultsState } from "@/contexts/searchContext";
 
-export default function WeatherSearch({ setSearchResults, setCurPage }: any) {
+export default function WeatherSearch() {
     const [query, setQuery] = useState("");
     const [qErr, setQErr] = useState<string | null>(null);
+
+    const {setSearchResults, setCurPage}: any = useSearchResultsState()
 
     const search = async () => {
         setQErr(null);

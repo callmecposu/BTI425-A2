@@ -2,10 +2,13 @@ import getCityInfo from "@/utils/getCityInfo";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import FullWeatherInfo from "@/components/fullWeatherInfo";
+import { useHistoryState } from "@/contexts/historyContext";
 
 export default function City() {
     const router = useRouter();
     const cityId = router.query.id;
+
+    const {citiesHistory, setCitiesHistory}: any = useHistoryState()
 
     const [cityInfo, setCityInfo] = useState<any>(null);
     const [cityErr, setCityErr] = useState<any>(null);
@@ -20,7 +23,10 @@ export default function City() {
                 });
                 return;
             }
-            setCityInfo(cityRes.res);
+            setCityInfo(cityRes.res)
+            let newHistory = Array.from(citiesHistory)
+            newHistory.unshift(cityRes.res)
+            setCitiesHistory(newHistory.slice(0,10))
         };
         if (cityId) {
             console.log(cityId);

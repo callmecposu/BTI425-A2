@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import getCurrentLocInfo from "@/utils/getCurrentLocInfo";
 import WeatherSearch from "@/components/weatherSearch";
 import { useRouter } from "next/router";
+import { useSearchResultsState } from "@/contexts/searchContext";
 
 export default function Home() {
     const router = useRouter();
@@ -10,12 +11,17 @@ export default function Home() {
     const [curLocInfo, setCurLocInfo] = useState<any>(null);
     const [curLocErr, setCurLocErr] = useState<string | null>(null);
 
-    const [searchResults, setSearchResults] = useState([]);
-    const [curPage, setCurPage] = useState<number | null>(null);
+    const { searchResults, setSearchResults, curPage, setCurPage }: any = useSearchResultsState();
+    // const [searchResults, setSearchResults] = useState([]);
+    // const [curPage, setCurPage] = useState<number | null>(null);
 
     useEffect(() => {
         getCurrentLocInfo(setCurLocErr, setCurLocInfo);
     }, []);
+
+    useEffect(() => {
+        console.log('searchResults: ', searchResults)
+    }, [searchResults]);
 
     return (
         <div>
@@ -27,8 +33,6 @@ export default function Home() {
                 </div>
             )}
             <WeatherSearch
-                setSearchResults={setSearchResults}
-                setCurPage={setCurPage}
             ></WeatherSearch>
             {/* Search Results Table */}
             {searchResults.length > 0 && (
@@ -46,7 +50,9 @@ export default function Home() {
                                 (res: any) => (
                                     <tr
                                         className=" transition-all hover:bg-gray-100 hover:cursor-pointer"
-                                        onClick={() => {router.push(`/city/${res.id}`)}}
+                                        onClick={() => {
+                                            router.push(`/city/${res.id}`);
+                                        }}
                                     >
                                         <td>
                                             {res.name}, {res.sys.country}{" "}
