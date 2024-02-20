@@ -32,7 +32,7 @@ export default function Home() {
             ></WeatherSearch>
             {searchResults.length > 0 && (
                 <div className="w-full md:w-3/4 mx-auto my-4 border-2">
-                    <table className="table table-zebra">
+                    <table className="table">
                         <thead>
                             <tr>
                                 <th>City</th>
@@ -43,7 +43,7 @@ export default function Home() {
                         <tbody>
                             {(searchResults[curPage as number] as any).map(
                                 (res: any) => (
-                                    <tr>
+                                    <tr className=" transition-all hover:bg-gray-100 hover:cursor-pointer">
                                         <td>
                                             {res.name}, {res.sys.country}{" "}
                                             {res.flag}
