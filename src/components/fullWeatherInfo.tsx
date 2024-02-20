@@ -4,9 +4,23 @@ export default function FullWeatherInfo({ info }: any) {
     const [sunrise, setSunrise] = useState<Date | null>(null);
     const [sunset, setSunset] = useState<Date | null>(null);
 
+    const [year, setYear] = useState<number | null>(null)
+    const [month, setMonth] = useState<number | null>(null)
+    const [day, setDay] = useState<number | null>(null)
+    const [hours, setHours] = useState<number | null>(null)
+    const [minutes, setMinutes] = useState<number | null>(null)
+    const [seconds, setSeconds] = useState<number | null>(null)
+
     useEffect(() => {
         setSunrise(new Date(info.sys.sunrise * 1000 + info.timezone));
         setSunset(new Date(info.sys.sunset * 1000 + info.timezone));
+
+        setYear(info.lastUpdated.getFullYear())
+        setMonth(info.lastUpdated.getMonth() + 1)
+        setDay(info.lastUpdated.getDate())
+        setHours(info.lastUpdated.getHours())
+        setMinutes(info.lastUpdated.getMinutes())
+        setSeconds(info.lastUpdated.getSeconds())
     }, []);
 
     return (
@@ -124,6 +138,10 @@ export default function FullWeatherInfo({ info }: any) {
                                     &nbsp;
                                 </span>
                             </div>
+                            {/* Last Updated */}
+                            <div className="w-full ms-8 mt-4 font-extralight italic">
+                                Last Updated: <div className="inline rounded-full bg-secondary p-1.5">{`${year}/${month}/${day} ${hours}:${minutes}:${seconds}`}&nbsp;</div>
+                            </div>
                         </div>
                         <div style={{ width: "20%" }}>
                             <img
@@ -133,22 +151,6 @@ export default function FullWeatherInfo({ info }: any) {
                             />
                         </div>
                     </div>
-                    {/* <div className="hero-content text-center text-neutral-content">
-                        <div className="max-w-md">
-                            <h1 className="mb-5 text-5xl font-bold">
-                                Hello there
-                            </h1>
-                            <p className="mb-5">
-                                Provident cupiditate voluptatem et in. Quaerat
-                                fugiat ut assumenda excepturi exercitationem
-                                quasi. In deleniti eaque aut repudiandae et a id
-                                nisi.
-                            </p>
-                            <button className="btn btn-primary">
-                                Get Started
-                            </button>
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>

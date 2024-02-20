@@ -1112,6 +1112,14 @@ html {
   margin-bottom: 0.75rem;
 }
 
+.ms-8 {
+  margin-inline-start: 2rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .inline {
   display: inline;
 }
@@ -1299,6 +1307,10 @@ html {
 
 .font-light {
   font-weight: 300;
+}
+
+.font-extralight {
+  font-weight: 200;
 }
 
 .italic {
