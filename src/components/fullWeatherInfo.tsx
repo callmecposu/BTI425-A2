@@ -12,15 +12,15 @@ export default function FullWeatherInfo({ info }: any) {
     const [seconds, setSeconds] = useState<string | null>(null)
 
     useEffect(() => {
-        const sunriseDate = new Date(info.sys.sunrise * 1000 + info.timezone)
-        const sunriseFormattedHr = sunriseDate.getHours().toString().padStart(2, '0')
-        const sunriseFormattedMin = sunriseDate.getMinutes().toString().padStart(2, '0')
-        const sunriseFormattedSec = sunriseDate.getSeconds().toString().padStart(2, '0')
+        const sunriseDate = new Date(info.sys.sunrise * 1000 + info.timezone * 1000)
+        const sunriseFormattedHr = sunriseDate.getUTCHours().toString().padStart(2, '0')
+        const sunriseFormattedMin = sunriseDate.getUTCMinutes().toString().padStart(2, '0')
+        const sunriseFormattedSec = sunriseDate.getUTCSeconds().toString().padStart(2, '0')
         setSunrise(`${sunriseFormattedHr} : ${sunriseFormattedMin} : ${sunriseFormattedSec}`);
-        const sunsetDate = new Date(info.sys.sunset * 1000 + info.timezone)
-        const sunsetFormattedHr = sunsetDate.getHours().toString().padStart(2, '0')
-        const sunsetFormattedMin = sunsetDate.getMinutes().toString().padStart(2, '0')
-        const sunsetFormattedSec = sunsetDate.getSeconds().toString().padStart(2, '0')
+        const sunsetDate = new Date(info.sys.sunset * 1000 + info.timezone * 1000)
+        const sunsetFormattedHr = sunsetDate.getUTCHours().toString().padStart(2, '0')
+        const sunsetFormattedMin = sunsetDate.getUTCMinutes().toString().padStart(2, '0')
+        const sunsetFormattedSec = sunsetDate.getUTCSeconds().toString().padStart(2, '0')
         setSunset(`${sunsetFormattedHr} : ${sunsetFormattedMin} : ${sunsetFormattedSec}`);
 
         setYear(info.lastUpdated.getFullYear())

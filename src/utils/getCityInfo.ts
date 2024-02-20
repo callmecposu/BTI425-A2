@@ -26,14 +26,13 @@ export default async function getCityInfo(id: string) {
         res.lastUpdated = new Date()
     }
     // cache the result
-    res.timestamp = new Date()
     const result = { status: resp.status, res: res };
     localStorage.setItem(`city:${id}`, JSON.stringify(result));
     return result;
 }
 
 const isCachedCityInfoValid = (cachedInfo: any) => {
-    const timestamp = new Date(cachedInfo.res.timestamp);
+    const timestamp = new Date(cachedInfo.res.lastUpdated);
     const rn = new Date();
     if ((rn.getTime() - timestamp.getTime()) / 1000 / 60 >= 10) {
         return false;
